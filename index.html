@@ -392,20 +392,13 @@
             transition: all 0.3s ease-in;
         }
         
-        /* Active title highlight */
+        /* Active title highlight - REMOVED */
         #dynamic-title.active {
-            text-shadow: 
-                0 0 10px currentColor, 
-                0 0 20px currentColor, 
-                0 0 30px currentColor,
-                0 0 40px #8B5CF6;
+            /* Efeitos de luz removidos */
         }
         
         #dynamic-subtitle.active {
-            text-shadow: 
-                0 0 15px rgba(0, 0, 0, 1), 
-                0 0 25px rgba(0, 0, 0, 0.9),
-                0 0 35px #FCD34D;
+            /* Efeitos de luz removidos */
         }
         
         /* Main styles */
@@ -455,7 +448,7 @@
                 <!-- Logo -->
                 <div class="flex items-center space-x-2">
                     <img src="imagens/logo.jpg" alt="Lucrabet365" class="w-8 h-8 rounded-lg animate-glow">
-                    <span class="text-white font-bold text-lg neon-text">Lucrabet365</span>
+                    <span class="text-white font-bold text-lg">Lucrabet365</span>
                 </div>
                 
                 <!-- Navigation Menu -->
@@ -536,10 +529,10 @@
             
             <!-- Main Headlines -->
             <div class="relative z-20 text-center max-w-6xl mx-auto px-4 mt-32">
-                <h1 id="dynamic-title" class="text-4xl md:text-6xl lg:text-7xl font-bold text-white neon-text-animated mb-6 leading-tight transition-all duration-500">
+                <h1 id="dynamic-title" class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight transition-all duration-500">
                     APRENDA A GANHAR DINHEIRO COM A LUCRABET365
                 </h1>
-                <h2 id="dynamic-subtitle" class="text-xl md:text-2xl lg:text-3xl text-yellow-300 font-semibold mb-8 transition-all duration-500" style="text-shadow: 0 0 25px rgba(0, 0, 0, 1), 0 0 35px rgba(0, 0, 0, 0.9);">
+                <h2 id="dynamic-subtitle" class="text-xl md:text-2xl lg:text-3xl text-yellow-300 font-semibold mb-8 transition-all duration-500">
                     Trabalhamos com o método mais eficaz e seguro de apostas esportivas!
                 </h2>
                 
@@ -578,7 +571,7 @@
             <div class="container mx-auto px-4 relative z-10">
                 <!-- Section Header -->
                 <div class="text-center mb-12 md:mb-16">
-                    <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white neon-text mb-6">
+                    <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
                         FAÇA PARTE DESTE <span class="text-neon-cyan">GRUPO DE VENCEDORES</span>
                     </h2>
                     <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
@@ -614,7 +607,7 @@
                     <div class="space-y-6 md:space-y-8">
                         <!-- Main Description -->
                         <div class="space-y-4">
-                            <h3 class="text-2xl md:text-3xl font-bold text-white neon-text">
+                            <h3 class="text-2xl md:text-3xl font-bold text-white">
                                 Especialistas em <span class="text-yellow-300">Apostas Esportivas</span>
                             </h3>
                             <p class="text-gray-300 text-lg leading-relaxed">
@@ -836,8 +829,8 @@
                 // Fade out current content
                 titleElement.classList.add('title-fade-out');
                 subtitleElement.classList.add('subtitle-fade-out');
-                titleElement.classList.remove('active');
-                subtitleElement.classList.remove('active');
+                // titleElement.classList.remove('active'); - REMOVED
+                // subtitleElement.classList.remove('active'); - REMOVED
                 
                 setTimeout(() => {
                     // Update content
@@ -850,11 +843,11 @@
                     titleElement.classList.add('title-fade-in');
                     subtitleElement.classList.add('subtitle-fade-in');
                     
-                    // Add active class for enhanced glow effect
-                    setTimeout(() => {
-                        titleElement.classList.add('active');
-                        subtitleElement.classList.add('active');
-                    }, 100);
+                    // Add active class for enhanced glow effect - REMOVED
+                    // setTimeout(() => {
+                    //     titleElement.classList.add('active');
+                    //     subtitleElement.classList.add('active');
+                    // }, 100);
                     
                     // Remove animation classes after animation completes
                     setTimeout(() => {
