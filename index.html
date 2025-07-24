@@ -43,6 +43,7 @@
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         /* Custom CSS for Lucrabet365 */
         
@@ -88,42 +89,7 @@
                 0 0 20px currentColor;
         }
         
-        /* Particle effect background */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-        }
-        
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #8B5CF6;
-            border-radius: 50%;
-            animation: float-particle 6s infinite linear;
-        }
-        
-        @keyframes float-particle {
-            0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) translateX(100px);
-                opacity: 0;
-            }
-        }
+        /* Particle effect background - REMOVED for better performance */
         
         /* Responsive adjustments */
         @media (max-width: 768px) {
@@ -133,6 +99,36 @@
             
             .neon-text {
                 text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+            }
+            
+            /* Mobile First - Hero content positioning */
+            .hero-content {
+                z-index: 30;
+                position: relative;
+            }
+            
+            #dynamic-title {
+                font-size: 2rem;
+                line-height: 1.2;
+                margin-bottom: 1rem;
+            }
+            
+            #dynamic-subtitle {
+                font-size: 1.125rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            /* Tablet and Desktop adjustments */
+            @media (min-width: 768px) {
+                .hero-content {
+                    /* Position maintained */
+                }
+            }
+            
+            @media (min-width: 1024px) {
+                .hero-content {
+                    /* Position maintained */
+                }
             }
         }
         
@@ -227,6 +223,139 @@
             animation: gradient-shift 10s ease infinite;
         }
         
+        /* Hero Carousel Styles */
+        .hero-carousel {
+            width: 100%;
+            height: 100%;
+        }
+        
+
+        
+        .hero-carousel .swiper-slide {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-carousel .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.3s ease;
+        }
+        
+
+        
+        /* Slide transition effects */
+        .hero-carousel .swiper-slide-active img {
+            transform: scale(1.05);
+        }
+        
+        .hero-carousel .swiper-slide-prev img,
+        .hero-carousel .swiper-slide-next img {
+            transform: scale(1);
+        }
+        
+        /* Custom Navigation Buttons */
+        .swiper-button-prev-custom,
+        .swiper-button-next-custom {
+            z-index: 30;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .swiper-button-prev-custom:hover,
+        .swiper-button-next-custom:hover {
+            background: rgba(0, 0, 0, 0.7);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .swiper-button-prev-custom {
+            left: 16px;
+        }
+        
+        .swiper-button-next-custom {
+            right: 16px;
+        }
+        
+        /* Custom Pagination */
+        .swiper-pagination-custom {
+            z-index: 30;
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+        
+        .swiper-pagination-custom span {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .swiper-pagination-custom span:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.2);
+        }
+        
+        .swiper-pagination-custom span.active {
+            background: #8B5CF6;
+            border-color: rgba(255, 255, 255, 0.8);
+            transform: scale(1.3);
+        }
+        
+        /* Mobile Responsive Adjustments */
+        @media (max-width: 768px) {
+            .swiper-button-prev-custom,
+            .swiper-button-next-custom {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+                top: 52% !important;
+                transform: translateY(-50%) !important;
+            }
+            
+            .swiper-button-prev-custom {
+                left: 8px !important;
+            }
+            
+            .swiper-button-next-custom {
+                right: 8px !important;
+            }
+            
+            .swiper-pagination-custom {
+                bottom: 16px;
+            }
+            
+            .swiper-pagination-custom span {
+                width: 10px;
+                height: 10px;
+            }
+        }
+        
         @keyframes gradient-shift {
             0%, 100% {
                 background-position: 0% 50%;
@@ -234,6 +363,49 @@
             50% {
                 background-position: 100% 50%;
             }
+        }
+        
+        /* Slide animation removed for better stability */
+        
+        /* Dynamic title animations */
+        .title-fade-out {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease-out;
+        }
+        
+        .title-fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.3s ease-in;
+        }
+        
+        .subtitle-fade-out {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease-out;
+        }
+        
+        .subtitle-fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.3s ease-in;
+        }
+        
+        /* Active title highlight */
+        #dynamic-title.active {
+            text-shadow: 
+                0 0 10px currentColor, 
+                0 0 20px currentColor, 
+                0 0 30px currentColor,
+                0 0 40px #8B5CF6;
+        }
+        
+        #dynamic-subtitle.active {
+            text-shadow: 
+                0 0 15px rgba(0, 0, 0, 1), 
+                0 0 25px rgba(0, 0, 0, 0.9),
+                0 0 35px #FCD34D;
         }
         
         /* Main styles */
@@ -275,9 +447,9 @@
         }
     </style>
 </head>
-<body class="gradient-bg min-h-screen overflow-x-hidden">
+<body class="gradient-bg min-h-screen overflow-x-hidden" style="margin: 0; padding: 0;">
     <!-- Header/Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/20 border-b border-neon-purple/30">
+    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/30 border-b border-neon-purple/30" style="margin: 0; padding: 0;">
         <nav class="container mx-auto px-4 py-3">
             <div class="flex items-center justify-between">
                 <!-- Logo -->
@@ -300,7 +472,7 @@
                 </button>
                 
                 <!-- WhatsApp Button -->
-                <a href="https://wa.me/5511999999999" target="_blank" class="text-white hover:text-neon-cyan transition-colors duration-300">
+                <a href="https://wa.me/5513981834951" target="_blank" class="text-white hover:text-neon-cyan transition-colors duration-300">
                     <i class="fab fa-whatsapp text-3xl"></i>
                 </a>
             </div>
@@ -326,62 +498,243 @@
     </div>
 
     <!-- Main Content -->
-    <main class="pt-0">
+    <main class="pt-0" style="margin: 0; padding: 0;">
         <!-- Hero Section -->
-        <section id="inicio" class="relative min-h-screen flex items-start justify-center z-10 pt-32">
-            <!-- Background Image -->
-            <div class="absolute inset-0 z-0 flex items-center justify-center">
-                <img src="imagens/capa.jpg" alt="Lucrabet365" class="w-full h-full object-cover">
+        <section id="inicio" class="relative min-h-screen flex items-center justify-center z-10 pt-32">
+            <!-- Carousel Background -->
+            <div class="absolute inset-0 z-0">
+                <div class="swiper hero-carousel h-full">
+                    <div class="swiper-wrapper">
+                        <!-- Slide 1 -->
+                        <div class="swiper-slide relative">
+                            <img src="imagens/capa.jpg" alt="Lucrabet365 - Apostas Esportivas" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/30"></div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="swiper-slide relative">
+                            <img src="imagens/capa2.jpg" alt="Lucrabet365 - Ganhe Dinheiro" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/30"></div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="swiper-slide relative">
+                            <img src="imagens/capa3.jpg" alt="Lucrabet365 - Método Seguro" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/30"></div>
+                        </div>
+                        <!-- Slide 4 -->
+                        <div class="swiper-slide relative">
+                            <img src="imagens/capa4.jpg" alt="Lucrabet365 - Resultados Comprovados" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/30"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            
             <!-- Background Elements -->
             <div class="absolute inset-0 overflow-hidden z-10">
-                <!-- Particles Effect -->
-                <div class="particles" id="particles"></div>
-                
-
+                <!-- Particles Effect Removed for Better Performance -->
             </div>
             
             <!-- Main Headlines -->
             <div class="relative z-20 text-center max-w-6xl mx-auto px-4 mt-32">
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white neon-text-animated mb-6 leading-tight">
-                    APOSTE E COMECE A GANHAR DINHEIRO COM A LUCRABET365
+                <h1 id="dynamic-title" class="text-4xl md:text-6xl lg:text-7xl font-bold text-white neon-text-animated mb-6 leading-tight transition-all duration-500">
+                    APRENDA A GANHAR DINHEIRO COM A LUCRABET365
                 </h1>
-                <h2 class="text-xl md:text-2xl lg:text-3xl text-yellow-300 font-semibold mb-8" style="text-shadow: 0 0 25px rgba(0, 0, 0, 1), 0 0 35px rgba(0, 0, 0, 0.9);">
+                <h2 id="dynamic-subtitle" class="text-xl md:text-2xl lg:text-3xl text-yellow-300 font-semibold mb-8 transition-all duration-500" style="text-shadow: 0 0 25px rgba(0, 0, 0, 1), 0 0 35px rgba(0, 0, 0, 0.9);">
                     Trabalhamos com o método mais eficaz e seguro de apostas esportivas!
                 </h2>
                 
                 <!-- CTA Button -->
-                <a href="https://wa.me/5511999999999" target="_blank" class="inline-flex items-center space-x-3 bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg mt-40">
+                <a href="https://wa.me/5513981834951" target="_blank" class="inline-flex items-center space-x-3 bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg mt-40">
                     <i class="fab fa-whatsapp text-xl"></i>
                     <span>Fale Com a Gente</span>
                 </a>
             </div>
             
-            <!-- Navigation Arrows -->
-            <div class="absolute left-4 top-1/2 transform -translate-y-1/2 z-20">
-                <button class="w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors duration-300">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-            </div>
-            <div class="absolute right-4 top-1/2 transform -translate-y-1/2 z-20">
-                <button class="w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors duration-300">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+            <!-- Carousel Navigation -->
+            <button class="swiper-button-prev-custom w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors duration-300">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="swiper-button-next-custom w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors duration-300">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <!-- Carousel Pagination -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+                <div class="swiper-pagination-custom flex space-x-2">
+                    <span class="w-3 h-3 bg-white/50 rounded-full cursor-pointer transition-all duration-300"></span>
+                    <span class="w-3 h-3 bg-white/50 rounded-full cursor-pointer transition-all duration-300"></span>
+                    <span class="w-3 h-3 bg-white/50 rounded-full cursor-pointer transition-all duration-300"></span>
+                    <span class="w-3 h-3 bg-white/50 rounded-full cursor-pointer transition-all duration-300"></span>
+                </div>
             </div>
         </section>
+
+        <!-- Grupo de Especialistas Section -->
+        <section id="especialistas" class="py-16 md:py-24 bg-gradient-to-b from-dark-purple to-dark-blue relative overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute inset-0 desk-texture-enhanced opacity-30"></div>
+            
+            <!-- Content Container -->
+            <div class="container mx-auto px-4 relative z-10">
+                <!-- Section Header -->
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white neon-text mb-6">
+                        FAÇA PARTE DESTE <span class="text-neon-cyan">GRUPO DE VENCEDORES</span>
+                    </h2>
+                    <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                        Cadastre-se em nosso grupo e receba o suporte necessário de profissionais experientes que transformam apostadores em vencedores
+                    </p>
+                </div>
+
+                <!-- Main Content Grid -->
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <!-- Image Column -->
+                    <div class="relative group">
+                        <div class="relative overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-500 group-hover:scale-105">
+                            <img 
+                                src="imagens/grupo.jpg" 
+                                alt="Grupo de Especialistas Lucrabet365" 
+                                class="w-full h-auto object-cover"
+                                loading="lazy"
+                            >
+                            <!-- Overlay Effect -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        </div>
+                        
+                        <!-- Floating Stats -->
+                        <div class="absolute -bottom-4 -right-4 bg-neon-purple/90 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-neon-purple/30">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-white">100%</div>
+                                <div class="text-sm text-gray-200">Resultados Garantidos</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Column -->
+                    <div class="space-y-6 md:space-y-8">
+                        <!-- Main Description -->
+                        <div class="space-y-4">
+                            <h3 class="text-2xl md:text-3xl font-bold text-white neon-text">
+                                Especialistas em <span class="text-yellow-300">Apostas Esportivas</span>
+                            </h3>
+                            <p class="text-gray-300 text-lg leading-relaxed">
+                                Nossa equipe é composta por profissionais com anos de experiência no mercado de apostas esportivas. 
+                                Cada especialista traz conhecimento único e estratégias comprovadas para maximizar seus ganhos.
+                            </p>
+                        </div>
+
+                        <!-- Features List -->
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-6 h-6 bg-neon-cyan rounded-full flex items-center justify-center mt-1">
+                                    <i class="fas fa-check text-white text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold text-lg">Transmissões Ao Vivo</h4>
+                                    <p class="text-gray-400">As dicas são dadas em tempo real, você não perde nada!</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-6 h-6 bg-neon-cyan rounded-full flex items-center justify-center mt-1">
+                                    <i class="fas fa-check text-white text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold text-lg">Estratégias Comprovadas</h4>
+                                    <p class="text-gray-400">Prezamos pela transparência e honestidade em nosso trabalho</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-6 h-6 bg-neon-cyan rounded-full flex items-center justify-center mt-1">
+                                    <i class="fas fa-check text-white text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold text-lg">Suporte Total</h4>
+                                    <p class="text-gray-400">Acompanhamento completo durante toda a transmissão</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-6 h-6 bg-neon-cyan rounded-full flex items-center justify-center mt-1">
+                                    <i class="fas fa-check text-white text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-semibold text-lg">Resultados Garantidos</h4>
+                                    <p class="text-gray-400">Compromisso com o sucesso e satisfação dos nossos clientes</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA Button -->
+                        <div class="pt-4">
+                            <a href="https://wa.me/5513981834951" target="_blank" class="inline-flex items-center space-x-3 bg-gradient-to-r from-neon-purple to-neon-cyan hover:from-neon-cyan hover:to-neon-purple text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg btn-neon">
+                                <i class="fab fa-whatsapp text-xl"></i>
+                                <span>Falar com Especialistas</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 md:mt-20">
+                    <div class="text-center p-6 bg-black/20 rounded-xl backdrop-blur-sm border border-white/10">
+                        <div class="text-3xl md:text-4xl font-bold text-neon-cyan mb-2">4+</div>
+                        <div class="text-gray-300 text-sm md:text-base">Anos de Experiência</div>
+                    </div>
+                    <div class="text-center p-6 bg-black/20 rounded-xl backdrop-blur-sm border border-white/10">
+                        <div class="text-3xl md:text-4xl font-bold text-neon-purple mb-2">100%</div>
+                        <div class="text-gray-300 text-sm md:text-base">Taxa de Sucesso</div>
+                    </div>
+                    <div class="text-center p-6 bg-black/20 rounded-xl backdrop-blur-sm border border-white/10">
+                        <div class="text-3xl md:text-4xl font-bold text-yellow-300 mb-2">24/7</div>
+                        <div class="text-gray-300 text-sm md:text-base">Suporte Disponível</div>
+                    </div>
+                    <div class="text-center p-6 bg-black/20 rounded-xl backdrop-blur-sm border border-white/10">
+                        <div class="text-3xl md:text-4xl font-bold text-green-400 mb-2">100%</div>
+                        <div class="text-gray-300 text-sm md:text-base">Clientes Satisfeitos</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Contato -->
+        <section id="contato" class="w-full bg-blue-950 py-8 px-4 flex flex-col items-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4 text-center">
+                Entre em Contato com a Lucrabet365
+            </h2>
+            <p class="text-lg md:text-3xl text-gray-300 mb-6 text-center">
+                Telefone: (13) 98183-4951
+            </p>
+            <h3 class="text-xl md:text-2xl font-semibold text-white mb-6 text-center">
+                Nos Chame no WhatsApp e nos siga nas Redes Sociais:
+            </h3>
+            <div class="flex gap-6 items-center">
+                <a href="https://wa.me/5513981834951" target="_blank" class="text-green-500 hover:text-green-400 transition-colors">
+                    <i class="fab fa-whatsapp text-6xl"></i>
+                </a>
+                <a href="https://www.instagram.com/lucrabet365?igsh=MXVlc293YW9vcDhpZg==" target="_blank" class="text-pink-500 hover:text-pink-400 transition-colors">
+                    <i class="fab fa-instagram text-6xl"></i>
+                </a>
+            </div>
+        </section>
+        <!-- Fim da Seção de Contato -->
     </main>
 
     <!-- Footer -->
     <footer class="bg-black py-4">
         <div class="container mx-auto px-4">
-            <div class="flex items-center justify-center space-x-1 text-white text-base">
-                <span>&copy; 2024 Lucrabet365. Todos os direitos reservados.</span>
-                <span>Produzido por:</span>
-                <img src="imagens/footerj3.png" alt="Lucrabet365" class="h-8 rounded">
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-1 text-white text-sm sm:text-base text-center">
+                <span>&copy; 2025 Lucrabet365. Todos os direitos reservados.</span>
+                <div class="flex items-center gap-1">
+                    <span>Produzido por:</span>
+                    <img src="imagens/footerj3.png" alt="J3 Digital Mídia" class="h-6 sm:h-8 rounded">
+                </div>
             </div>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         // Mobile menu functionality
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -403,19 +756,9 @@
             });
         });
 
-        // Particles effect
+        // Particles effect - REMOVED for better performance
         function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                particlesContainer.appendChild(particle);
-            }
+            // Particles removed to improve carousel performance
         }
 
         // Smooth scrolling for navigation links
@@ -464,32 +807,166 @@
             });
         }
 
-        // Initialize all effects when page loads
-        window.addEventListener('load', () => {
-            // Create particles
-            createParticles();
+        // Dynamic content for each slide
+        const slideContent = [
+            {
+                title: "APRENDA A GANHAR DINHEIRO COM A LUCRABET365",
+                subtitle: "Trabalhamos com o método mais eficaz e seguro de apostas esportivas!"
+            },
+            {
+                title: "ENSINAMOS A VOCÊ COMO JOGAR E A GANHAR AO VIVO",
+                subtitle: "Aprenda técnicas comprovadas para maximizar seus ganhos!"
+            },
+            {
+                title: "UTILIZE O MÉTODO MAIS EFICAZ E SEGURO PARA GANHAR",
+                subtitle: "Estratégias testadas e aprovadas por milhares de apostadores!"
+            },
+            {
+                title: "VOCÊ TERÁ TODO O SUPORTE PARA FAZER SUAS APOSTAS",
+                subtitle: "Equipe especializada pronta para te ajudar a conquistar resultados!"
+            }
+        ];
+
+        // Function to update dynamic content
+        function updateDynamicContent(slideIndex) {
+            const titleElement = document.getElementById('dynamic-title');
+            const subtitleElement = document.getElementById('dynamic-subtitle');
             
-            // Add button effects
-            addButtonEffects();
-            
-            // Initialize typing effects
-            const codeElements = document.querySelectorAll('.code-text');
-            codeElements.forEach(element => {
-                const originalText = element.textContent;
+            if (titleElement && subtitleElement && slideContent[slideIndex]) {
+                // Fade out current content
+                titleElement.classList.add('title-fade-out');
+                subtitleElement.classList.add('subtitle-fade-out');
+                titleElement.classList.remove('active');
+                subtitleElement.classList.remove('active');
+                
                 setTimeout(() => {
-                    typeWriter(element, originalText, 50);
-                }, 1000);
+                    // Update content
+                    titleElement.textContent = slideContent[slideIndex].title;
+                    subtitleElement.textContent = slideContent[slideIndex].subtitle;
+                    
+                    // Fade in new content
+                    titleElement.classList.remove('title-fade-out');
+                    subtitleElement.classList.remove('subtitle-fade-out');
+                    titleElement.classList.add('title-fade-in');
+                    subtitleElement.classList.add('subtitle-fade-in');
+                    
+                    // Add active class for enhanced glow effect
+                    setTimeout(() => {
+                        titleElement.classList.add('active');
+                        subtitleElement.classList.add('active');
+                    }, 100);
+                    
+                    // Remove animation classes after animation completes
+                    setTimeout(() => {
+                        titleElement.classList.remove('title-fade-in');
+                        subtitleElement.classList.remove('subtitle-fade-in');
+                    }, 500);
+                }, 250);
+            }
+        }
+
+        // Initialize Hero Carousel
+        function initHeroCarousel() {
+            const heroCarousel = new Swiper('.hero-carousel', {
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                effect: 'slide',
+                speed: 800,
+                slidesPerView: 1,
+                spaceBetween: 0,
+                grabCursor: true,
+                navigation: {
+                    nextEl: '.swiper-button-next-custom',
+                    prevEl: '.swiper-button-prev-custom',
+                },
+                pagination: {
+                    el: '.swiper-pagination-custom',
+                    clickable: true,
+                    renderBullet: function (index, className) {
+                        return '<span class="' + className + '"></span>';
+                    },
+                },
+                on: {
+                    slideChange: function () {
+                        // Update custom pagination
+                        const bullets = document.querySelectorAll('.swiper-pagination-custom span');
+                        bullets.forEach((bullet, index) => {
+                            bullet.classList.remove('active');
+                            if (index === this.realIndex) {
+                                bullet.classList.add('active');
+                            }
+                        });
+                        
+                        // Update dynamic content
+                        updateDynamicContent(this.realIndex);
+                    },
+                    init: function () {
+                        // Set first bullet as active
+                        const firstBullet = document.querySelector('.swiper-pagination-custom span');
+                        if (firstBullet) {
+                            firstBullet.classList.add('active');
+                        }
+                        
+                        // Initialize with first slide content
+                        updateDynamicContent(0);
+                    }
+                }
             });
+            
+            // Custom pagination click handlers
+            const bullets = document.querySelectorAll('.swiper-pagination-custom span');
+            bullets.forEach((bullet, index) => {
+                bullet.addEventListener('click', () => {
+                    heroCarousel.slideTo(index);
+                });
+            });
+            
+            return heroCarousel;
+        }
+
+        // Global carousel instance
+        let heroCarouselInstance;
+
+        // Add keyboard interaction for carousel navigation
+        document.addEventListener('keydown', (e) => {
+            if (heroCarouselInstance) {
+                if (e.key === 'ArrowLeft') {
+                    heroCarouselInstance.slidePrev();
+                } else if (e.key === 'ArrowRight') {
+                    heroCarouselInstance.slideNext();
+                }
+            }
         });
 
-        // Add keyboard interaction for navigation arrows
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                // Previous slide logic
-                console.log('Previous slide');
-            } else if (e.key === 'ArrowRight') {
-                // Next slide logic
-                console.log('Next slide');
+        // Initialize all effects when page loads
+        window.addEventListener('load', () => {
+            try {
+                // Particles removed for better performance
+                
+                // Add button effects
+                addButtonEffects();
+                
+                // Initialize hero carousel and store instance
+                heroCarouselInstance = initHeroCarousel();
+                
+                // Verify carousel initialization
+                if (heroCarouselInstance) {
+                    console.log('Carousel initialized successfully');
+                }
+                
+                // Initialize typing effects
+                const codeElements = document.querySelectorAll('.code-text');
+                codeElements.forEach(element => {
+                    const originalText = element.textContent;
+                    setTimeout(() => {
+                        typeWriter(element, originalText, 50);
+                    }, 1000);
+                });
+            } catch (error) {
+                console.error('Error initializing carousel:', error);
             }
         });
     </script>
