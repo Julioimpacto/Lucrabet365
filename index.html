@@ -11,6 +11,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://lucrabet.com">
     <title>Lucrabet - O Melhor Grupo de Apostas Esportivas Online</title>
+    <link rel="icon" type="image/png" href="imagens/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -367,39 +368,7 @@
         
         /* Slide animation removed for better stability */
         
-        /* Dynamic title animations */
-        .title-fade-out {
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: all 0.3s ease-out;
-        }
-        
-        .title-fade-in {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.3s ease-in;
-        }
-        
-        .subtitle-fade-out {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease-out;
-        }
-        
-        .subtitle-fade-in {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.3s ease-in;
-        }
-        
-        /* Active title highlight - REMOVED */
-        #dynamic-title.active {
-            /* Efeitos de luz removidos */
-        }
-        
-        #dynamic-subtitle.active {
-            /* Efeitos de luz removidos */
-        }
+
         
         /* Main styles */
         .gradient-bg {
@@ -443,20 +412,20 @@
 <body class="gradient-bg min-h-screen overflow-x-hidden" style="margin: 0; padding: 0;">
     <!-- Header/Navigation -->
     <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/30 border-b border-neon-purple/30" style="margin: 0; padding: 0;">
-        <nav class="container mx-auto px-4 py-3">
+        <nav class="container mx-auto px-4 py-2">
             <div class="flex items-center justify-between">
                 <!-- Logo -->
                 <div class="flex items-center space-x-2">
-                    <img src="imagens/logo.jpg" alt="Lucrabet" class="w-8 h-8 rounded-lg animate-glow">
+                    <img src="imagens/logo.png" alt="Lucrabet" class="w-12 h-12 rounded-full">
                     <span class="text-white font-bold text-lg">Lucrabet</span>
                 </div>
                 
                 <!-- Navigation Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#inicio" class="text-white hover:text-neon-cyan transition-colors duration-300">Início</a>
-                    <a href="#servicos" class="text-white hover:text-neon-cyan transition-colors duration-300">Serviços</a>
-                    <a href="#especialistas" class="text-white hover:text-neon-cyan transition-colors duration-300">Especialistas</a>
-                    <a href="#contato" class="text-white hover:text-neon-cyan transition-colors duration-300">Contato</a>
+                    <a href="#inicio" class="text-white hover:text-neon-cyan transition-colors duration-300 text-lg font-semibold">Início</a>
+                    <a href="#servicos" class="text-white hover:text-neon-cyan transition-colors duration-300 text-lg font-semibold">Serviços</a>
+                    <a href="#especialistas" class="text-white hover:text-neon-cyan transition-colors duration-300 text-lg font-semibold">Especialistas</a>
+                    <a href="#contato" class="text-white hover:text-neon-cyan transition-colors duration-300 text-lg font-semibold">Contato</a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
@@ -466,7 +435,7 @@
                 
                 <!-- WhatsApp Button -->
                 <a href="https://wa.me/5513981834951" target="_blank" class="text-white hover:text-neon-cyan transition-colors duration-300">
-                    <i class="fab fa-whatsapp text-3xl"></i>
+                    <i class="fab fa-whatsapp text-5xl"></i>
                 </a>
             </div>
         </nav>
@@ -500,22 +469,26 @@
                     <div class="swiper-wrapper">
                         <!-- Slide 1 -->
                         <div class="swiper-slide relative">
-                            <img src="imagens/capa.jpg" alt="Lucrabet - Apostas Esportivas" class="w-full h-full object-cover">
+                            <img src="imagens/capa.jpg" alt="Lucrabet - Apostas Esportivas" class="w-full h-full object-cover hidden lg:block">
+                            <img src="imagens/mobile1.jpg" alt="Lucrabet - Apostas Esportivas" class="w-full h-full object-cover lg:hidden">
                             <div class="absolute inset-0 bg-black/30"></div>
                         </div>
                         <!-- Slide 2 -->
                         <div class="swiper-slide relative">
-                            <img src="imagens/capa2.jpg" alt="Lucrabet - Ganhe Dinheiro" class="w-full h-full object-cover">
+                            <img src="imagens/capa2.jpg" alt="Lucrabet - Ganhe Dinheiro" class="w-full h-full object-cover hidden lg:block">
+                            <img src="imagens/mobile2.jpg" alt="Lucrabet - Ganhe Dinheiro" class="w-full h-full object-cover lg:hidden">
                             <div class="absolute inset-0 bg-black/30"></div>
                         </div>
                         <!-- Slide 3 -->
                         <div class="swiper-slide relative">
-                            <img src="imagens/capa3.jpg" alt="Lucrabet - Método Seguro" class="w-full h-full object-cover">
+                            <img src="imagens/capa3.jpg" alt="Lucrabet - Método Seguro" class="w-full h-full object-cover hidden lg:block">
+                            <img src="imagens/mobile3.jpg" alt="Lucrabet - Método Seguro" class="w-full h-full object-cover lg:hidden">
                             <div class="absolute inset-0 bg-black/30"></div>
                         </div>
                         <!-- Slide 4 -->
                         <div class="swiper-slide relative">
-                            <img src="imagens/capa4.jpg" alt="Lucrabet - Resultados Comprovados" class="w-full h-full object-cover">
+                            <img src="imagens/capa4.jpg" alt="Lucrabet - Resultados Comprovados" class="w-full h-full object-cover hidden lg:block">
+                            <img src="imagens/mobile4.jpg" alt="Lucrabet - Resultados Comprovados" class="w-full h-full object-cover lg:hidden">
                             <div class="absolute inset-0 bg-black/30"></div>
                         </div>
                     </div>
@@ -527,18 +500,12 @@
                 <!-- Particles Effect Removed for Better Performance -->
             </div>
             
-            <!-- Main Headlines -->
-            <div class="relative z-20 text-center max-w-6xl mx-auto px-4 mt-32">
-                <h1 id="dynamic-title" class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight transition-all duration-500">
-                    APRENDA A GANHAR DINHEIRO COM A LUCRABET
-                </h1>
-                <h2 id="dynamic-subtitle" class="text-xl md:text-2xl lg:text-3xl text-yellow-300 font-semibold mb-8 transition-all duration-500">
-                    Trabalhamos com o método mais eficaz e seguro de apostas esportivas!
-                </h2>
-                
-                <!-- CTA Button -->
-                <a href="https://wa.me/5513981834951" target="_blank" class="inline-flex items-center space-x-3 bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg mt-40">
-                    <i class="fab fa-whatsapp text-xl"></i>
+            <!-- CTA Button -->
+            <div class="relative z-20 w-full mt-[40rem] sm:mt-[45rem] md:mt-[50rem] lg:mt-[60rem] xl:mt-96 flex justify-end lg:justify-center xl:justify-center xl:container xl:mx-auto">
+                <a href="https://wa.me/5513981834951" target="_blank" 
+                   class="inline-flex items-center space-x-1 bg-green-500 hover:bg-green-600 text-white px-3 py-1.5 text-sm rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg
+                   xl:px-8 xl:py-3 xl:text-lg xl:space-x-3">
+                    <i class="fab fa-whatsapp text-base xl:text-xl"></i>
                     <span>Fale Com a Gente</span>
                 </a>
             </div>
@@ -800,63 +767,7 @@
             });
         }
 
-        // Dynamic content for each slide
-        const slideContent = [
-            {
-                title: "APRENDA A GANHAR DINHEIRO COM A LUCRABET",
-                subtitle: "Trabalhamos com o método mais eficaz e seguro de apostas esportivas!"
-            },
-            {
-                title: "ENSINAMOS A VOCÊ COMO JOGAR E A GANHAR AO VIVO",
-                subtitle: "Aprenda técnicas comprovadas para maximizar seus ganhos!"
-            },
-            {
-                title: "UTILIZE O MÉTODO MAIS EFICAZ E SEGURO PARA GANHAR",
-                subtitle: "Estratégias testadas e aprovadas por milhares de apostadores!"
-            },
-            {
-                title: "VOCÊ TERÁ TODO O SUPORTE PARA FAZER SUAS APOSTAS",
-                subtitle: "Equipe especializada pronta para te ajudar a conquistar resultados!"
-            }
-        ];
 
-        // Function to update dynamic content
-        function updateDynamicContent(slideIndex) {
-            const titleElement = document.getElementById('dynamic-title');
-            const subtitleElement = document.getElementById('dynamic-subtitle');
-            
-            if (titleElement && subtitleElement && slideContent[slideIndex]) {
-                // Fade out current content
-                titleElement.classList.add('title-fade-out');
-                subtitleElement.classList.add('subtitle-fade-out');
-                // titleElement.classList.remove('active'); - REMOVED
-                // subtitleElement.classList.remove('active'); - REMOVED
-                
-                setTimeout(() => {
-                    // Update content
-                    titleElement.textContent = slideContent[slideIndex].title;
-                    subtitleElement.textContent = slideContent[slideIndex].subtitle;
-                    
-                    // Fade in new content
-                    titleElement.classList.remove('title-fade-out');
-                    subtitleElement.classList.remove('subtitle-fade-out');
-                    titleElement.classList.add('title-fade-in');
-                    subtitleElement.classList.add('subtitle-fade-in');
-                    
-                    // Add active class for enhanced glow effect - REMOVED
-                    // setTimeout(() => {
-                    //     titleElement.classList.add('active');
-                    //     subtitleElement.classList.add('active');
-                    // }, 100);
-                    
-                    // Remove animation classes after animation completes
-                    setTimeout(() => {
-                        titleElement.classList.remove('title-fade-in');
-                        subtitleElement.classList.remove('subtitle-fade-in');
-                    }, 500);
-                }, 250);
-            }
-        }
 
         // Initialize Hero Carousel
         function initHeroCarousel() {
@@ -892,9 +803,6 @@
                                 bullet.classList.add('active');
                             }
                         });
-                        
-                        // Update dynamic content
-                        updateDynamicContent(this.realIndex);
                     },
                     init: function () {
                         // Set first bullet as active
@@ -902,9 +810,6 @@
                         if (firstBullet) {
                             firstBullet.classList.add('active');
                         }
-                        
-                        // Initialize with first slide content
-                        updateDynamicContent(0);
                     }
                 }
             });
