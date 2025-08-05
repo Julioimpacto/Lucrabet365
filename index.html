@@ -370,10 +370,31 @@
         
 
         
-        /* Main styles */
-        .gradient-bg {
-            background: linear-gradient(135deg, #1E1B4B 0%, #1E3A8A 50%, #1E1B4B 100%);
-        }
+                 /* Main styles */
+         .gradient-bg {
+             background: linear-gradient(135deg, #1E1B4B 0%, #1E3A8A 50%, #1E1B4B 100%);
+         }
+         
+         /* iOS Video Compatibility */
+         video {
+             -webkit-user-select: none;
+             -moz-user-select: none;
+             -ms-user-select: none;
+             user-select: none;
+             -webkit-touch-callout: none;
+             -webkit-tap-highlight-color: transparent;
+         }
+         
+         /* iOS-specific video controls */
+         @media screen and (-webkit-min-device-pixel-ratio: 0) {
+             video::-webkit-media-controls {
+                 display: flex !important;
+             }
+             
+             video::-webkit-media-controls-panel {
+                 display: flex !important;
+             }
+         }
         .neon-text {
             text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
         }
@@ -791,6 +812,10 @@
                                     poster="imagens/capa.jpg"
                                     playsinline
                                     webkit-playsinline
+                                    x-webkit-airplay="allow"
+                                    x5-video-player-type="h5"
+                                    x5-video-player-fullscreen="true"
+                                    x5-video-orientation="portraint"
                                 >
                                     <source src="video/video lucrabet.mp4" type="video/mp4">
                                     Seu navegador não suporta a reprodução de vídeos.
@@ -1055,60 +1080,110 @@
             }
         });
         
-                 // Video player initialization
-         function initVideoPlayer() {
-             const video = document.querySelector('#video-demo video');
-             if (video) {
-                 // Ensure video is properly loaded
-                 video.addEventListener('loadedmetadata', () => {
-                     console.log('Video metadata loaded successfully');
-                 });
-                 
-                 // Handle video errors
-                 video.addEventListener('error', (e) => {
-                     console.error('Video error:', e);
-                 });
-                 
-                 // Add click to play functionality with audio enabled
-                 video.addEventListener('click', () => {
-                     if (video.paused) {
-                         // Enable audio when user clicks play
-                         video.muted = false;
-                         video.play().catch(e => {
-                             console.error('Error playing video:', e);
-                         });
-                     } else {
-                         video.pause();
-                     }
-                 });
-                 
-                 // Ensure video is accessible
-                 video.setAttribute('tabindex', '0');
-                 video.addEventListener('keydown', (e) => {
-                     if (e.key === 'Enter' || e.key === ' ') {
-                         e.preventDefault();
-                         if (video.paused) {
-                             // Enable audio when user presses Enter/Space
-                             video.muted = false;
-                             video.play().catch(e => {
-                                 console.error('Error playing video:', e);
-                             });
-                         } else {
-                             video.pause();
-                         }
-                     }
-                 });
-                 
-                 // Listen for play events to ensure audio is enabled
-                 video.addEventListener('play', () => {
-                     // Ensure audio is enabled when video starts playing
-                     if (video.muted) {
-                         video.muted = false;
-                     }
-                 });
-             }
-         }
+                          // Video player initialization
+          function initVideoPlayer() {
+              const video = document.querySelector('#video-demo video');
+              if (video) {
+                  // iOS compatibility fixes
+                  video.setAttribute('playsinline', '');
+                  video.setAttribute('webkit-playsinline', '');
+                  video.setAttribute('x-webkit-airplay', 'allow');
+                  
+                  // Ensure video is properly loaded
+                  video.addEventListener('loadedmetadata', () => {
+                      console.log('Video metadata loaded successfully');
+                  });
+                  
+                  // Handle video errors
+                  video.addEventListener('error', (e) => {
+                      console.error('Video error:', e);
+                  });
+                  
+                  // iOS-specific touch handling
+                  let touchStartTime = 0;
+                  let touchEndTime = 0;
+                  
+                  video.addEventListener('touchstart', (e) => {
+                      touchStartTime = new Date().getTime();
+                  });
+                  
+                  video.addEventListener('touchend', (e) => {
+                      touchEndTime = new Date().getTime();
+                      const touchDuration = touchEndTime - touchStartTime;
+                      
+                      // Only trigger play on short taps (not long press)
+                      if (touchDuration < 500) {
+                          if (video.paused) {
+                              // For iOS, we need to ensure user interaction
+                              video.muted = false;
+                              video.play().catch(e => {
+                                  console.error('Error playing video on iOS:', e);
+                                  // Fallback: try with muted first, then unmute
+                                  video.muted = true;
+                                  video.play().then(() => {
+                                      setTimeout(() => {
+                                          video.muted = false;
+                                      }, 100);
+                                  }).catch(e2 => {
+                                      console.error('Fallback play failed:', e2);
+                                  });
+                              });
+                          } else {
+                              video.pause();
+                          }
+                      }
+                  });
+                  
+                  // Add click to play functionality with audio enabled
+                  video.addEventListener('click', (e) => {
+                      // Prevent double triggering on mobile
+                      if (e.type === 'click' && e.detail === 0) return;
+                      
+                      if (video.paused) {
+                          // Enable audio when user clicks play
+                          video.muted = false;
+                          video.play().catch(e => {
+                              console.error('Error playing video:', e);
+                          });
+                      } else {
+                          video.pause();
+                      }
+                  });
+                  
+                  // Ensure video is accessible
+                  video.setAttribute('tabindex', '0');
+                  video.addEventListener('keydown', (e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          if (video.paused) {
+                              // Enable audio when user presses Enter/Space
+                              video.muted = false;
+                              video.play().catch(e => {
+                                  console.error('Error playing video:', e);
+                              });
+                          } else {
+                              video.pause();
+                          }
+                      }
+                  });
+                  
+                  // Listen for play events to ensure audio is enabled
+                  video.addEventListener('play', () => {
+                      // Ensure audio is enabled when video starts playing
+                      if (video.muted) {
+                          video.muted = false;
+                      }
+                  });
+                  
+                  // iOS-specific: Handle canplay event
+                  video.addEventListener('canplay', () => {
+                      // Ensure video is ready for iOS
+                      video.style.pointerEvents = 'auto';
+                  });
+              }
+          }
     </script>
 </body>
 </html> 
+
 
